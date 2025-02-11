@@ -16,7 +16,7 @@ This API is a real-time railway management system built using Node.js and MySQL.
 
 5. Booking Details: Retrieve details of booked tickets.
 
-### Admin FUnctionality
+### Admin Functionality
 
 1. Add New Train: Admins can add new trains to the database.
 
@@ -43,7 +43,7 @@ This API is a real-time railway management system built using Node.js and MySQL.
 1. Clone Repository
 
    ```git clone https://github.com/priyansh673/WorkIndia_IRCTC
-  cd WorkIndia_IRCTC
+  cd WorkIndia_IRCTC```
 
    
 
