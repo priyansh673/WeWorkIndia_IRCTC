@@ -52,7 +52,7 @@ This API is a real-time railway management system built using Node.js and MySQL.
 
 3. Set up .env
 
-   ```PORT=5000```
+   ```PORT=2432```
    
    ```JWT_SECRET=your_jwt_secret```
    
