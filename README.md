@@ -16,4 +16,34 @@ This API is a real-time railway management system built using Node.js and MySQL.
 
 5. Booking Details: Retrieve details of booked tickets.
 
-6. 
+### Admin FUnctionality
+
+1. Add New Train: Admins can add new trains to the database.
+
+2. Update Train Details: Admins can update train information such as total seats.
+
+3. Role-Based Access: Admin API endpoints are protected and can only be accessed using admin tokens.
+
+
+## Tech Stack
+
+- Backend: Node.js with Express.js
+
+- Database: MySQL
+
+- Authentication: JSON Web Tokens (JWT)
+
+- Environment Variables: dotenv
+
+
+## Installation and Setup
+
+### Steps
+
+1. Clone Repository
+
+   ```git clone https://github.com/priyansh673/WorkIndia_IRCTC
+  cd WorkIndia_IRCTC
+
+   
+
