@@ -42,8 +42,8 @@ This API is a real-time railway management system built using Node.js and MySQL.
 
 1. Clone Repository
 
-   ```git clone https://github.com/priyansh673/WorkIndia_IRCTC
-  cd WorkIndia_IRCTC```
+   ```git clone https://github.com/priyansh673/WorkIndia_IRCTC```
+  ```cd WorkIndia_IRCTC```
 
    
 
