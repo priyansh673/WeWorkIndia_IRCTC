@@ -53,15 +53,20 @@ This API is a real-time railway management system built using Node.js and MySQL.
 3. Set up .env
 
    ```PORT=5000```
+   
    ```JWT_SECRET=your_jwt_secret```
+   
    ```DB_HOST=localhost```
+   
    ```DB_USER=root```
+   
    ```DB_PASSWORD=your_db_password```
+   
    ```DB_NAME=railway_db```
 
-4. Create MySQL Database
+5. Create MySQL Database
 
-5. Start Server
+6. Start Server
 
    ```npm start```
 
