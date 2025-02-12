@@ -20,9 +20,7 @@ This API is a real-time railway management system built using Node.js and MySQL.
 
 1. Add New Train: Admins can add new trains to the database.
 
-2. Update Train Details: Admins can update train information such as total seats.
-
-3. Role-Based Access: Admin API endpoints are protected and can only be accessed using admin tokens.
+2. Role-Based Access: Admin API endpoints are protected and can only be accessed using admin tokens.
 
 
 ## Tech Stack
