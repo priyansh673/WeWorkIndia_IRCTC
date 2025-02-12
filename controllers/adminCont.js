@@ -6,7 +6,7 @@ const adminCont = {
 
         TrainModel.addTrain(name, source, destination, totalSeats, (err) => {
             if (err) {
-                console.error(err);
+                console.error("Database Error!,", err);
                 return res.status(500).send("Error adding train");
             }
             res.status(201).send("Train added !");

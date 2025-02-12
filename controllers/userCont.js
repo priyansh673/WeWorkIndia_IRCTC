@@ -1,4 +1,5 @@
 const UserModel = require("../models/userModel");
+const trainModel = require("../models/trainModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -37,6 +38,28 @@ const userCont = {
             const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
             res.status(200).json({ token });
         });
+    },
+
+    check: (req, res) => {
+        const { source, destination } = req.body;
+
+        if(!source || !destination) {
+            return res.status(400).json({message: "Source and Destination needed"})
+        }
+
+        trainModel.checkAvailability(source, destination, (error, results) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ message: "Server error" });
+            }
+
+            if (results.length === 0) {
+                return res.status(404).json({ message: "No trains found for this route" });
+            }
+
+            res.json({ trains: results });
+        });
+
     }
 };
 

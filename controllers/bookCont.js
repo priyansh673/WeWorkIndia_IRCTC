@@ -3,34 +3,46 @@ const BookingModel = require("../models/bookModel");
 
 const bookCont = {
     bookSeat: (req, res) => {
-        const { trainId, source, destination } = req.body;
+        const { trainId, seatCount } = req.body;
         const userId = req.user.id; 
-
-        TrainModel.getTrainsBetweenStations(source, destination, (err, trains) => {
-            if (err || trains.length === 0) {
+    
+        console.log("Booking request received:", { userId, trainId, seatCount });
+    
+        TrainModel.checkAvailabilityById(trainId, (err, result) => {
+            if (err) {
+                console.error("Database error:", err);
+                return res.status(500).send("Internal Server Error");
+            }
+    
+            if (!result || result.length === 0) {
+                console.warn("Train not found:", trainId);
                 return res.status(404).send("Train not found");
             }
-
-            const train = trains[0];
-
-            if (train.available_seats <= 0) {
-                return res.status(400).send("No seats available");
+    
+            const train = result[0];
+    
+            if (train.available_seats < seatCount) {
+                console.warn("Not enough seats available. Requested:", seatCount, "Available:", train.available_seats);
+                return res.status(400).send("Not enough seats available");
             }
+    
 
-            
-            BookingModel.createBooking(userId, trainId, source, destination, (err, result) => {
+            BookingModel.createBooking(userId, trainId, seatCount, (err, bookingResult) => {
                 if (err) {
-                    console.error(err);
+                    console.error("Error creating booking:", err);
                     return res.status(500).send("Error booking seat");
                 }
+    
+                console.log("Booking created successfully:", bookingResult);
+    
 
-               
-                TrainModel.updateSeats(trainId, train.available_seats - 1, (err) => {
+                const updatedSeats = Math.max(0, train.available_seats - seatCount);
+                TrainModel.updateSeats(trainId, updatedSeats, (err) => {
                     if (err) {
-                        console.error(err);
+                        console.error("Error updating seat availability:", err);
                         return res.status(500).send("Error updating seat availability");
                     }
-                    res.status(201).send("Seat booked successfully");
+                    res.status(201).send("Seat(s) booked successfully");
                 });
             });
         });

@@ -1,12 +1,12 @@
 const db = require("../db");
 
 const bookModel = {
-    createBooking: (userId, trainId, source, destination, callback) => {
+    createBooking: (userId, trainId, seatCount, callback) => {
         const query = `
-            INSERT INTO bookings (user_id, train_id, source, destination)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO bookings (user_id, train_id, seat_count, booking_date)
+            VALUES (?, ?, ?, NOW())
         `;
-        db.query(query, [userId, trainId, source, destination], callback);
+        db.query(query, [userId, trainId, seatCount], callback);
     },
 
     getBookingDetails: (bookingId, callback) => {
